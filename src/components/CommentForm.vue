@@ -1,9 +1,12 @@
 <script setup>
+  import { ref } from "vue";
   import Comment from "../model/Comment";
 
   const { comment } = defineProps({
     comment: Comment
   });
+
+  const suggestChange = ref( true );
 </script>
 
 <template>
@@ -12,14 +15,24 @@
       <h2>Add Comment</h2>
     </header>
     <div class="content">
+        <input type="hidden" name="lineNrStart" :value="comment.lineNumberRange.start">
+        <input type="hidden" name="lineNrStart" :value="comment.lineNumberRange.end">
+
         <label for="code">Original Code</label>
-        <textarea id="code" name="code" :rows="comment.nrOfLines" readonly style="resize: none;">{{ comment.snippet }}</textarea>
+        <output id="code" name="code" :rows="comment.nrOfLines" readonly style="resize: none;">
+          <pre><code>{{ comment.snippet }}</code></pre>
+        </output>
 
         <label for="comment">Comment</label>
         <textarea id="comment" name="comment" type="text" style="resize: vertical;" v-model="comment.comment"></textarea>
 
-        <label for="suggestion">Suggested Change</label>
-        <textarea id="suggestion" name="suggestion" style="resize: vertical;" v-model="comment.suggestedChange"></textarea>
+        <div class="checkbox-field">
+          <input type="checkbox" name="suggest-change" id="suggest-change" v-model="suggestChange">
+          <label for="suggest-change">Suggest a change</label>
+        </div>
+
+        <label v-if="suggestChange" for="suggestion">Suggestion</label>
+        <textarea v-if="suggestChange" id="suggestion" name="suggestion" style="resize: vertical;" v-model="comment.suggestedChange"></textarea>
     </div>
     <footer>
       <button type="submit">Add Comment</button>
@@ -36,6 +49,14 @@
 
   form label {
     padding-inline-end: 1em;
+  }
+
+  .checkbox-field {
+    grid-column: 2;
+  }
+
+  .checkbox-field label {
+    margin-inline-start: 0.5em;
   }
 
   form .content {
