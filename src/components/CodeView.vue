@@ -19,7 +19,7 @@
 </script>
 
 <template>
-  <div class="code">
+  <div class="code-view">
     <fieldset class="line-numbers">
       <legend class="visually-hidden">Line number start</legend>
       <label v-for="lineNumber in code.nrOfLines">
@@ -34,12 +34,12 @@
         {{ lineNumber }}
       </label>
     </fieldset>
-    <pre><code>{{ code.code }}</code></pre>
+    <pre class="code"><code>{{ code.code }}</code></pre>
   </div>
 </template>
 
 <style scoped>
-  .code {
+  .code-view {
     display: grid;
     grid-template-columns: max-content max-content 1fr;
   }
@@ -74,14 +74,5 @@
     padding: 0 4px;
     height: 24px;
     min-width: 64px;
-  }
-
-  pre {
-    background-color: black;
-    color: white;
-    padding-inline: 1em;
-    margin-block: 0;
-    font-size: 1em;
-    line-height: 24px;
   }
 </style>

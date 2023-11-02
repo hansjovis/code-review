@@ -20,7 +20,7 @@
 
         <label for="code">Original Code</label>
         <output id="code" name="code" :rows="comment.nrOfLines" readonly style="resize: none;">
-          <pre><code>{{ comment.snippet }}</code></pre>
+          <pre class="code"><code>{{ comment.snippet }}</code></pre>
         </output>
 
         <label for="comment">Comment</label>
@@ -32,7 +32,7 @@
         </div>
 
         <label v-if="suggestChange" for="suggestion">Suggestion</label>
-        <textarea v-if="suggestChange" id="suggestion" name="suggestion" style="resize: vertical;" v-model="comment.suggestedChange"></textarea>
+        <textarea v-if="suggestChange"  class="code" id="suggestion" name="suggestion" style="resize: vertical;" v-model="comment.suggestedChange"></textarea>
     </div>
     <footer>
       <button type="submit">Add Comment</button>

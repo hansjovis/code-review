@@ -4,3 +4,12 @@ main {
   width: 96ch;
   margin-inline: auto;
 }
+
+.code {
+  background-color: black;
+  color: white;
+  padding-inline: 1em;
+  margin-block: 0;
+  font-size: 1em;
+  line-height: 24px;
+}
