@@ -21,11 +21,8 @@ console.log( 'done' );
 
   const comment = ref( new Comment( codeSnippet ) );
 
-  function onLineNumberStartChange( lineNumber ) {
+  function onLineSelected( lineNumber ) {
     comment.value.lineNumberRange.start = lineNumber;
-  }
-
-  function onLineNumberEndChange( lineNumber ) {
     comment.value.lineNumberRange.end = lineNumber;
   }
 </script>
@@ -34,8 +31,7 @@ console.log( 'done' );
   <main>
     <CodeView 
       :code="codeSnippet" 
-      @lineStartChange="onLineNumberStartChange" 
-      @lineEndChange="onLineNumberEndChange" 
+      @lineSelected="onLineSelected" 
     />
     <CommentForm 
       :comment="comment"

@@ -6,7 +6,7 @@
     comment: Comment
   });
 
-  const suggestChange = ref( true );
+  const suggestChange = ref( false );
 </script>
 
 <template>
@@ -16,7 +16,9 @@
     </header>
     <div class="content">
         <input type="hidden" name="lineNrStart" :value="comment.lineNumberRange.start">
-        <input type="hidden" name="lineNrEnd" :value="comment.lineNumberRange.end">
+
+        <label for="lineNrEnd">Line number end</label>
+        <input type="number" name="lineNrEnd" v-model="comment.lineNumberRange.end">
 
         <label for="code">Original Code</label>
         <output id="code" name="code" :rows="comment.nrOfLines" readonly style="resize: none;">

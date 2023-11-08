@@ -5,16 +5,11 @@
     code: CodeSnippet
   } );
 
-  const emit = defineEmits( [ 'lineStartChange', 'lineEndChange' ] );
+  const emit = defineEmits( [ 'lineSelected' ] );
 
-  function updateLineNumberStart( { target } ) {
+  function selectLine( { target } ) {
     const lineNumber =  Number.parseInt( target.dataset.lineNr );
-    emit( 'lineStartChange', lineNumber );
-  }
-
-  function updateLineNumberEnd( { target } ) {
-    const lineNumber = Number.parseInt( target.dataset.lineNr );
-    emit( 'lineEndChange', lineNumber );
+    emit( 'lineSelected', lineNumber );
   }
 </script>
 
@@ -23,15 +18,8 @@
     <fieldset class="line-numbers">
       <legend class="visually-hidden">Line number start</legend>
       <label v-for="lineNumber in code.nrOfLines">
-        <input name="start" type="radio" :data-line-nr="lineNumber" @click="updateLineNumberStart">
-        {{ lineNumber }}
-      </label>
-    </fieldset>
-    <fieldset class="line-numbers">
-      <legend class="visually-hidden">Line number end</legend>
-      <label v-for="lineNumber in code.nrOfLines">
-        <input name="end" type="radio" :data-line-nr="lineNumber" @click="updateLineNumberEnd">
-        {{ lineNumber }}
+        <input class="visually-hidden" name="start" type="radio" :data-line-nr="lineNumber" @click="selectLine">
+        <span>{{ lineNumber }}</span>
       </label>
     </fieldset>
     <pre class="code"><code>{{ code.code }}</code></pre>
@@ -41,7 +29,7 @@
 <style scoped>
   .code-view {
     display: grid;
-    grid-template-columns: max-content max-content 1fr;
+    grid-template-columns: max-content 1fr;
   }
 
   fieldset {
@@ -68,11 +56,19 @@
     flex-direction: column;
   }
 
-  .line-numbers label {
+  .line-numbers label span {
     display: block;
     font-size: 13px;
     padding: 0 4px;
     height: 24px;
     min-width: 64px;
+  }
+  .line-numbers label:hover {
+    background-color: aqua;
+  }
+
+  .line-numbers label input[type=radio]:checked + span {
+    display: block;
+    background-color: aqua;
   }
 </style>
