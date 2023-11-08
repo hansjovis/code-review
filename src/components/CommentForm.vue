@@ -2,11 +2,19 @@
   import { ref } from "vue";
   import Comment from "../model/Comment";
 
+  import useCommentStore from "../stores/comment-store";
+
+  const store = useCommentStore();
+
   const { comment } = defineProps({
     comment: Comment
   });
 
   const suggestChange = ref( false );
+
+  function addComment() {
+    store.addComment( comment.copy );
+  }
 </script>
 
 <template>
@@ -37,7 +45,7 @@
         <textarea v-if="suggestChange"  class="code" id="suggestion" name="suggestion" style="resize: vertical;" v-model="comment.suggestedChange"></textarea>
     </div>
     <footer>
-      <button type="submit">Add Comment</button>
+      <button type="submit" @click.prevent="addComment">Add Comment</button>
     </footer>
   </form>
 </template>

@@ -2,6 +2,7 @@
   import { ref } from "vue";
 
   import CodeView from "./components/CodeView.vue";
+  import CommentList from "./components/CommentList.vue";
   import CommentForm from "./components/CommentForm.vue";
   
   import CodeSnippet from "./model/CodeSnippet";
@@ -33,6 +34,7 @@ console.log( 'done' );
       :code="codeSnippet" 
       @lineSelected="onLineSelected" 
     />
+    <CommentList />
     <CommentForm 
       :comment="comment"
     />

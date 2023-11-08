@@ -9,6 +9,10 @@ class Range {
   get length() {
     return Math.abs( this.end - this.start );
   }
+
+  get copy() {
+    return new Range( this.start, this.end );
+  }
 }
 
 export default Range;

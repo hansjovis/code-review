@@ -19,6 +19,16 @@ class Comment {
   get nrOfLines() {
     return this.lines.length;
   }
+
+  get copy() {
+    const copy = new Comment( this.code );
+    
+    copy.lineNumberRange = this.lineNumberRange.copy;
+    copy.comment = this.comment;
+    copy.suggestedChange = this.suggestedChange;
+
+    return copy;
+  }
 }
 
 export default Comment;
