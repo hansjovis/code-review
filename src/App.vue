@@ -23,8 +23,8 @@ console.log( 'done' );
   const comment = ref( new Comment( codeSnippet ) );
 
   function onLineSelected( lineNumber ) {
-    comment.value.lineNumberRange.start = lineNumber;
-    comment.value.lineNumberRange.end = lineNumber;
+    comment.value.lineStart = lineNumber;
+    comment.value.lineEnd = lineNumber;
   }
 </script>
 

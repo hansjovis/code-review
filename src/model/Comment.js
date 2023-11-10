@@ -29,6 +29,14 @@ class Comment {
 
     return copy;
   }
+
+  set lineStart( newLineStart ) {
+    this.lineNumberRange.start = newLineStart;
+  }
+
+  set lineEnd( newLineEnd ) {
+    this.lineNumberRange.end = newLineEnd;
+  }
 }
 
 export default Comment;
