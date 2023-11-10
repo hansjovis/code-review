@@ -1,7 +1,8 @@
 import Range from "./Range";
 
 class Comment {
-  constructor( code ) {
+  constructor( code, author ) {
+    this.author = author;
     this.code = code;
     this.lineNumberRange = new Range();
     this.comment = "";
@@ -21,7 +22,7 @@ class Comment {
   }
 
   get copy() {
-    const copy = new Comment( this.code );
+    const copy = new Comment( this.code, this.author );
     
     copy.lineNumberRange = this.lineNumberRange.copy;
     copy.comment = this.comment;

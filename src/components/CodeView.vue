@@ -18,7 +18,7 @@
     <fieldset class="line-numbers">
       <legend class="visually-hidden">Line number start</legend>
       <label v-for="lineNumber in code.nrOfLines">
-        <input class="visually-hidden" name="start" type="radio" :data-line-nr="lineNumber" @click="selectLine">
+        <input :id="`L${lineNumber}`" class="visually-hidden" name="start" type="radio" :data-line-nr="lineNumber" @click="selectLine">
         <span>{{ lineNumber }}</span>
       </label>
     </fieldset>

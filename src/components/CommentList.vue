@@ -8,25 +8,37 @@
 
 <template>
     <h2>Comments</h2>
-    <ul>
-        <li v-for="comment in comments">
-            <article class="comment">
-                <pre class="code"><code>{{ comment.snippet }}</code></pre>
-                <p>{{ comment.comment }}</p>
-            </article>
-        </li>
-    </ul>
+    <article v-for="comment in comments" class="comment">
+        <details>
+            <summary>
+                <a :href="`/users/${comment.author}`">@{{ comment.author }}</a> added a comment for line {{ comment.lineNumberRange.start }}.
+                <menu>
+                    <button>Edit</button>
+                    <button>Remove</button>
+                </menu>
+            </summary>
+            <pre class="code"><code>{{ comment.snippet }}</code></pre>
+            <p>{{ comment.comment }}</p>
+        </details>
+    </article>
 </template>
 
 <style scoped>
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-
     .comment {
+        position: relative;
         border: 1px solid gray;
         margin-block: 1em;
+    }
+
+    .comment summary {
+        padding: 0.5em;
+        cursor: default;
+    }
+
+    .comment menu {
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 
     .comment p {

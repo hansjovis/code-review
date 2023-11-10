@@ -20,7 +20,7 @@ console.log( 'done' );
 
   const codeSnippet = new CodeSnippet( code );
 
-  const comment = ref( new Comment( codeSnippet ) );
+  const comment = ref( new Comment( codeSnippet, "hansjovis" ) );
 
   function onLineSelected( lineNumber ) {
     comment.value.lineStart = lineNumber;
@@ -34,10 +34,10 @@ console.log( 'done' );
       :code="codeSnippet" 
       @lineSelected="onLineSelected" 
     />
-    <CommentList />
     <CommentForm 
       :comment="comment"
     />
+    <CommentList />
   </main>
 </template>
 
